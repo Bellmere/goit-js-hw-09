@@ -17,21 +17,18 @@ controlEl.startBtn.addEventListener('click', onClickStart);
 controlEl.stopBtn.addEventListener('click', onClickStop);
 
 function onClickStart(e) {
-    if (!e.сurrentTarget) {
         timeId = setInterval(() => {
             mainEl.style.background = getRandomHexColor();
         }, 1000);
         controlEl.startBtn.disabled = true;
         controlEl.stopBtn.disabled = false;
-    }
 };
 
 function onClickStop(e) {
-    if (e.currentTarget) {
         clearInterval(timeId);
         controlEl.stopBtn.disabled = true;
         controlEl.startBtn.disabled = false;
-    }
+
 }
 
 console.log(controlEl);
