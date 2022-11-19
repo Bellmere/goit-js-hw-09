@@ -19,12 +19,24 @@ Notiflix.Notify.init({
 const inputDateEl = document.querySelector('input#datetime-picker');
 const startBtn = document.querySelector('[data-start]');
 startBtn.disabled = true;
+let timerId = null;
+let eventDateTimer = Number(eventDateTimer);
+console.log(typeof(eventDateTimer));
 
 const eventDate = {
     days: document.querySelector('[data-days]'),
     hours: document.querySelector('[data-hours]'),
     minutes: document.querySelector('[data-minutes]'),
     seconds: document.querySelector('[data-seconds]'),
+}
+
+startBtn.addEventListener('click', onTimerId);
+
+function onTimerId(e) {
+  timerId = setInterval(() => {
+    Number(eventDateTimer) - 1000;
+    console.log(this.timerId);
+  },1000);
 }
 
 const date = new Date();
@@ -42,9 +54,8 @@ const options = {
       }
       else {
         startBtn.disabled = false;
-        const timer =  convertMs(selectedDates[0] - date);
-        console.log(timer);
-        return timer;
+        eventDateTimer =  selectedDates[0] - date;
+        console.log(eventDateTimer);
       }
     },
   };
