@@ -16,7 +16,7 @@ Notiflix.Notify.init({
     // ...
   });
 
-  const timerEl = document.querySelector('.timer');
+const timerEl = document.querySelector('.timer');
 const inputDateEl = document.querySelector('input#datetime-picker');
 const startBtn = document.querySelector('[data-start]');
 startBtn.disabled = true;
@@ -26,6 +26,11 @@ const eventDate = {
     minutes: document.querySelector('[data-minutes]'),
     seconds: document.querySelector('[data-seconds]'),
 }
+
+timerEl.style.cssText = `
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+`;
 
 const options = {
   enableTime: true,
@@ -71,7 +76,7 @@ function addLeadingZero(value) {
 
 startBtn.addEventListener('click', () => {
   let timer = setInterval(() => {
-    let countdown = new Date(text.value) - new Date();
+    let countdown = new Date(inputDateEl.value) - new Date();
     startBtn.disabled = true;
     if (countdown >= 0) {
       let timeObject = convertMs(countdown);
@@ -80,56 +85,12 @@ startBtn.addEventListener('click', () => {
       eventDate.minutes.textContent = addLeadingZero(timeObject.minutes);
       eventDate.seconds.textContent = addLeadingZero(timeObject.seconds);
       if (countdown <= 10000) {
-        timerHtml.style.color = 'tomato';
+        timerEl.style.color = 'orange'; 
       }
     } else {
-      Notiflix.Notify.success('Countdown finished');
-      timerHtml.style.color = 'black';
+      Notiflix.Notify.success('Event finished');
+      timerEl.style.color = 'red';
       clearInterval(timer);
     }
   }, 1000);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// startBtn.addEventListener('click', e => {
-//     timerId = setInterval(() => {
-//       eventDateTimer -= fixCounter;
-//       console.log(eventDateTimer);
-//     }, 1000);
-// });
-
-// const date = new Date();
-// console.log(date);
-
-// const options = {
-//     enableTime: true,
-//     time_24hr: true,
-//     defaultDate: new Date(),
-//     minuteIncrement: 1,
-//     onClose(selectedDates) {
-//       console.log(selectedDates[0]);
-//       if (selectedDates[0] < date) {
-//         Notiflix.Notify.warning('Please choose a date in the future');
-//       }
-//       else {
-//         startBtn.disabled = false;
-//         eventDateTimer =  Number(selectedDates[0] - date);
-//         console.log(eventDateTimer);
-//       }
-//     },
-//   };
