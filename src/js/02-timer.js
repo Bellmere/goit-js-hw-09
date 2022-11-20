@@ -1,31 +1,31 @@
-import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
 Notiflix.Notify.init({
-    width: '280px',
-    position: 'right-top',
-    distance: '10px',
-    opacity: 1,
-    backOverlay: true,
-    warning: {
-        background: '#FFA07A',
-        textColor: '#fff',
-        backOverlayColor: 'rgba(238,191,49,0.2)',
-      },
-    // ...
-  });
+  width: '280px',
+  position: 'right-top',
+  distance: '10px',
+  opacity: 1,
+  backOverlay: true,
+  warning: {
+    background: '#FFA07A',
+    textColor: '#fff',
+    backOverlayColor: 'rgba(238,191,49,0.2)',
+  },
+  // ...
+});
 
 const timerEl = document.querySelector('.timer');
 const inputDateEl = document.querySelector('input#datetime-picker');
 const startBtn = document.querySelector('[data-start]');
 startBtn.disabled = true;
 const eventDate = {
-    days: document.querySelector('[data-days]'),
-    hours: document.querySelector('[data-hours]'),
-    minutes: document.querySelector('[data-minutes]'),
-    seconds: document.querySelector('[data-seconds]'),
-}
+  days: document.querySelector('[data-days]'),
+  hours: document.querySelector('[data-hours]'),
+  minutes: document.querySelector('[data-minutes]'),
+  seconds: document.querySelector('[data-seconds]'),
+};
 
 timerEl.style.cssText = `
   display: grid;
@@ -42,8 +42,7 @@ const options = {
     if (selectedDates[0] < new Date()) {
       Notiflix.Notify.warning('Please choose a date in the future');
       startBtn.disabled = true;
-    }
-    else {
+    } else {
       startBtn.disabled = false;
     }
   },
@@ -85,7 +84,7 @@ startBtn.addEventListener('click', () => {
       eventDate.minutes.textContent = addLeadingZero(timeObject.minutes);
       eventDate.seconds.textContent = addLeadingZero(timeObject.seconds);
       if (countdown <= 10000) {
-        timerEl.style.color = 'orange'; 
+        timerEl.style.color = 'orange';
       }
     } else {
       Notiflix.Notify.success('Event finished');
